@@ -27,9 +27,10 @@ class CompteCourant extends Compte
 
         $soldeRestant = parent::getSolde() + $this->getDecouvert();
 
-        if ($sommeARetirer > 0 && $sommeARetirer <= $soldeRestant) {
+        if ($sommeARetirer >= 0 && $sommeARetirer <= $soldeRestant) {
             $nouveauSolde = parent::getSolde() - $sommeARetirer;
-            return parent::setSolde($nouveauSolde);
+            parent::setSolde($nouveauSolde);
+            return parent::getSolde();
         } else {
             return("Retrait impossible");
         }

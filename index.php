@@ -11,7 +11,7 @@ $compte1->setSolde(1500);
 $afficherSolde = $compte1->getSolde();
 echo "Le solde du compte est de " .$afficherSolde."€";
 $compte1->setDecouvert(300);
-$compte1->retirer(1900);
+$compte1->retirer(1800);
 echo"<br>";
 echo "Le montant après retrait est de : ".$compte1->getSolde()."€";
 

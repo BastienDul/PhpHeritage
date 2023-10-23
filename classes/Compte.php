@@ -25,7 +25,7 @@ abstract class Compte
 
     public function setSolde(float $somme)
     {
-        if ($somme > 0 || $somme != 0) {
+        if ($somme >= 0 || $somme != 0) {
             $this->solde = $somme;
     }
         return $this->solde ;
