@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Banque;
+
 class CompteEpargne extends Compte{
 
     private float $tauxInteret;

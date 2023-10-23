@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Banque;
+
 abstract class Compte
 {
     private $titulaire;
