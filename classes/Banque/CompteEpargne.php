@@ -2,13 +2,14 @@
 
 namespace App\Banque;
 
+use App\Client\Compte as CompteClient;
 class CompteEpargne extends Compte{
 
     private float $tauxInteret;
 
-    public function __construct(string $titulaire, float $solde, float $interet)
+    public function __construct(CompteClient $compte, float $solde, float $interet)
     {
-        parent::__construct($titulaire, $solde);
+        parent::__construct($compte, $solde);
         $this->tauxInteret = $interet;
     }
 

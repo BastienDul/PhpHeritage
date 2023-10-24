@@ -9,6 +9,7 @@
 
 require_once 'classes/Autoloader.php';
 use App\Autoloader;
+use App\Client\Compte;
 Autoloader::register();
 
 
@@ -17,26 +18,48 @@ use App\Banque\Client;
 use App\Banque\CompteCourant as CompteCourant;
 use App\Banque\CompteEpargne as CompteEpargne;
 
-$compte1 = new CompteCourant("Stéphane", 1000, 500);
+$compteClient1 = new CompteClient("Stéphane", "Afpa", "0648331564");
+
+echo "<pre>";
+var_dump($compteClient1);
+echo "</pre>";
+
+$nom = $compteClient1->getNom();
+$tel = $compteClient1->getTelephone();
+echo 'Prénom : '.$nom.'<br> Numéro de tel : '. $tel;
+
+echo "<hr>";
 
 
-$compte1->setSolde(1500);
-$afficherSolde = $compte1->getSolde();
-echo "Le solde du compte est de " .$afficherSolde."€";
-$compte1->setDecouvert(300);
-$compte1->retirer(1900);
+// Compte Courant
+
+// $compte1 = new CompteCourant("Stéphane", 1000, 500);
+$compteCourant1 = new CompteCourant($compteClient1, 1000, 500);
+
+$nom = $compteCourant1->getTitulaire()->getNom();
+$telephone = $compteCourant1->getTitulaire()->getTelephone();
+
+echo 'Prénom : '.$nom.'<br> Numéro de tel : '. $tel;
 echo"<br>";
-echo "Le montant après retrait est de : ".$compte1->getSolde()."€";
+$compteCourant1->setSolde(1500);
+$afficherSolde = $compteCourant1->getSolde();
+echo "Le solde du compte est de " .$afficherSolde."€";
+$compteCourant1->setDecouvert(300);
+$compteCourant1->retirer(1801);
+echo"<br>";
+echo "Le montant après retrait est de : ".$compteCourant1->getSolde()."€";
 
 
 echo "<pre>";
-var_dump($compte1);
+var_dump($compteCourant1);
 echo "</pre>";
 
+echo "<hr>";
 
 // COMPTE EPARGNE 
 
-$compteEpargne1 = new CompteEpargne("Stéphane", 1500, 0.5);
+// $compteEpargne1 = new CompteEpargne("Stéphane", 1500, 0.5);
+$compteEpargne1 = new CompteEpargne($compteClient1, 1500, 0.5);
 
 $compteEpargne1->setSolde(1000);
 echo "Le montant du compte sans interêt s'élève à : ". $compteEpargne1->getSolde();
@@ -49,4 +72,12 @@ echo "<pre>";
 var_dump($compteEpargne1);
 echo "</pre>";
 
+echo "<hr>";
 
+// Compte 2
+
+// $compte2 = new CompteClient("Doe", "John", "0241521472");
+
+// echo "<pre>";
+// var_dump($compte2);
+// echo "</pre>";

@@ -2,15 +2,18 @@
 
 namespace App\Banque;
 
+use App\Client\Compte as CompteClient;
+
 class CompteCourant extends Compte
 {
 
     private $decouvert;
 
 
-    public function __construct(string $titulaire, float $solde, float $decouvert)
+    public function __construct(CompteClient $compte, float $solde, float $decouvert)
     {
-        parent::__construct($titulaire, $solde);
+        parent::__construct($compte, $solde);
+        
         $this->decouvert = $decouvert;
     }
 
@@ -29,14 +32,12 @@ class CompteCourant extends Compte
 
         $soldeRestant = parent::getSolde() + $this->getDecouvert();
 
-        if ($sommeARetirer >= 0 && $sommeARetirer <= $soldeRestant) {
+        if ($sommeARetirer > 0 && $sommeARetirer <= $soldeRestant) {
             $nouveauSolde = parent::getSolde() - $sommeARetirer;
             parent::setSolde($nouveauSolde);
             return parent::getSolde();
         } else {
-            return("Retrait impossible");
+            return "Retrait impossible";
         }
-
-        
     }
 }
